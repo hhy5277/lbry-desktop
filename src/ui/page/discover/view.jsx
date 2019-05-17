@@ -15,89 +15,87 @@ type Props = {
   featuredUris: {},
 };
 
-class DiscoverPage extends React.PureComponent<Props> {
-  constructor() {
-    super();
-    this.continousFetch = undefined;
-  }
+// class DiscoverPage extends React.PureComponent<Props> {
+// constructor() {
+//   super();
+//   this.continousFetch = undefined;
+// }
 
-  componentDidMount() {
-    const { fetchFeaturedUris, fetchRewardedContent, fetchRewards } = this.props;
+// componentDidMount() {
+//   const { fetchFeaturedUris, fetchRewardedContent, fetchRewards } = this.props;
 
-    fetchFeaturedUris();
-    fetchRewardedContent();
+//   fetchFeaturedUris();
+//   fetchRewardedContent();
 
-    this.continousFetch = setInterval(() => {
-      fetchFeaturedUris();
-      fetchRewardedContent();
-      fetchRewards();
-    }, 1000 * 60 * 60);
-  }
+//   this.continousFetch = setInterval(() => {
+//     fetchFeaturedUris();
+//     fetchRewardedContent();
+//     fetchRewards();
+//   }, 1000 * 60 * 60);
+// }
 
-  componentWillUnmount() {
-    this.clearContinuousFetch();
-  }
+// componentWillUnmount() {
+//   this.clearContinuousFetch();
+// }
 
-  getCategoryLinkPartByCategory(category: string) {
-    const channelName = category.substr(category.indexOf('@'));
+// getCategoryLinkPartByCategory(category: string) {
+//   const channelName = category.substr(category.indexOf('@'));
 
-    if (!channelName.includes('#')) {
-      return null;
-    }
+//   if (!channelName.includes('#')) {
+//     return null;
+//   }
 
-    return channelName;
-  }
+//   return channelName;
+// }
 
-  trimClaimIdFromCategory(category: string) {
-    return category.split('#')[0];
-  }
+// trimClaimIdFromCategory(category: string) {
+//   return category.split('#')[0];
+// }
 
-  continousFetch: ?IntervalID;
+// continousFetch: ?IntervalID;
 
-  clearContinuousFetch() {
-    if (this.continousFetch) {
-      clearInterval(this.continousFetch);
-      this.continousFetch = null;
-    }
-  }
+// clearContinuousFetch() {
+//   if (this.continousFetch) {
+//     clearInterval(this.continousFetch);
+//     this.continousFetch = null;
+//   }
+// }
 
-  render() {
-    const { featuredUris, fetchingFeaturedUris, followedTags } = this.props;
-    const hasContent = typeof featuredUris === 'object' && Object.keys(featuredUris).length;
-    const failedToLoad = !fetchingFeaturedUris && !hasContent;
+function DiscoverPage(props) {
+  const { followedTags } = props;
+  // const hasContent = typeof featuredUris === 'object' && Object.keys(featuredUris).length;
+  // const failedToLoad = !fetchingFeaturedUris && !hasContent;
+  console.log('render');
+  return (
+    <Page>
+      {/* <FirstRun /> */}
+      <h1 className="media__title media__title--large">{__('Trending')}</h1>
+      <ul className="card__list">
+        {new Array(10).fill(1).map((x, i) => (
+          <FileCard placeholder key={i} />
+        ))}
+      </ul>
 
-    return (
-      <Page isLoading={!hasContent && fetchingFeaturedUris}>
-        {/* <FirstRun /> */}
-        <h1 className="media__title media__title--large">{__('Trending')}</h1>
-        <ul className="card__list">
-          {new Array(10).fill(1).map((x, i) => (
-            <FileCard placeholder key={i} />
-          ))}
-        </ul>
+      <div className="card card--section">
+        <h2 className="card__title card__title--flex-between">
+          {__('Make This Your Own')}
+          <Button button="inverse" label={__('Close')} />
+        </h2>
+        <p className="card__subtitle">{__('You are already following a couple tags, try searching for a new one.')}</p>
 
-        <div className="card card--section">
-          <h2 className="card__title card__title--flex-between">
-            {__('Make This Your Own')}
-            <Button button="inverse" label={__('Close')} />
-          </h2>
-          <p className="card__subtitle">
-            {__('You are already following a couple tags, try searching for a new one.')}
-          </p>
-
-          <div className="card__content">
-            <Discovery />
-          </div>
+        <div className="card__content">
+          <Discovery />
         </div>
+      </div>
 
-        <h1 className="media__title media__title--large">{followedTags[0] && followedTags[0].name}</h1>
-        <ul className="card__list">
-          {new Array(10).fill(1).map((x, i) => (
-            <FileCard placeholder key={i} />
-          ))}
-        </ul>
+      <h1 className="media__title media__title--large">{followedTags[0] && followedTags[0].name}</h1>
+      <ul className="card__list">
+        {new Array(10).fill(1).map((x, i) => (
+          <FileCard placeholder key={i} />
+        ))}
+      </ul>
 
-        {/* {hasContent &&
+      {/* {hasContent &&
           Object.keys(featuredUris).map(category => (
             <CategoryList
               lazyLoad
@@ -108,9 +106,8 @@ class DiscoverPage extends React.PureComponent<Props> {
             />
           ))}
         {failedToLoad && <div className="empty">{__('Failed to load landing content.')}</div>} */}
-      </Page>
-    );
-  }
+    </Page>
+  );
 }
 
 export default DiscoverPage;

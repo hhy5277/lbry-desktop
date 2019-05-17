@@ -16,9 +16,15 @@ const followedTagsAnimation = {
   from: {
     opacity: 0,
     maxHeight: 0,
-    transform: `translate3d(0, -40px, 0)`,
+    // maxWidth: 0,
+    // transform: `translate3d(0, -40px, 0)`,
   },
-  enter: { opacity: 1, maxWidth: 200, maxHeight: 50, transform: `translate3d(0, 0, 0)` },
+  enter: {
+    opacity: 1,
+    maxWidth: 200,
+    maxHeight: 50,
+    // transform: `translate3d(0, 0, 0)`
+  },
   leave: { opacity: 0, maxWidth: 0, maxHeight: 0 },
   trail: 100,
 };
