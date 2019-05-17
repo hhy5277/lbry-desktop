@@ -3,7 +3,9 @@ import React from 'react';
 import Page from 'component/page';
 import CategoryList from 'component/categoryList';
 import FirstRun from 'component/firstRun';
-import Discovery from 'component/discoveryFirstRun';
+import Discovery from 'component/tagsSelect';
+import FileCard from 'component/fileCard';
+import Button from 'component/button';
 
 type Props = {
   fetchFeaturedUris: () => void,
@@ -65,10 +67,30 @@ class DiscoverPage extends React.PureComponent<Props> {
     const failedToLoad = !fetchingFeaturedUris && !hasContent;
 
     return (
-      <Page notContained isLoading={!hasContent && fetchingFeaturedUris} className="main--no-padding">
-        <FirstRun />
-        <Discovery />
-        {hasContent &&
+      <Page isLoading={!hasContent && fetchingFeaturedUris}>
+        {/* <FirstRun /> */}
+        <h1 className="media__title media__title--large">{__('Trending')}</h1>
+        <ul className="card__list">
+          {new Array(10).fill(1).map((x, i) => (
+            <FileCard placeholder key={i} />
+          ))}
+        </ul>
+
+        <div className="card card--section">
+          <h2 className="card__title card__title--flex-between">
+            {__('Make This Your Own')}
+            <Button button="inverse" label={__('Close')} />
+          </h2>
+          <p className="card__subtitle">
+            {__('You are already following a couple tags, try searching for a new one.')}
+          </p>
+
+          <div className="card__content">
+            <Discovery />
+          </div>
+        </div>
+
+        {/* {hasContent &&
           Object.keys(featuredUris).map(category => (
             <CategoryList
               lazyLoad
@@ -78,7 +100,7 @@ class DiscoverPage extends React.PureComponent<Props> {
               categoryLink={this.getCategoryLinkPartByCategory(category)}
             />
           ))}
-        {failedToLoad && <div className="empty">{__('Failed to load landing content.')}</div>}
+        {failedToLoad && <div className="empty">{__('Failed to load landing content.')}</div>} */}
       </Page>
     );
   }

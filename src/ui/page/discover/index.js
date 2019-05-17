@@ -6,11 +6,13 @@ import {
   doFetchFeaturedUris,
   selectFetchingFeaturedUris,
 } from 'lbryinc';
+import { selectFollowedTags } from 'lbry-redux';
 import DiscoverPage from './view';
 
 const select = state => ({
   featuredUris: selectFeaturedUris(state),
   fetchingFeaturedUris: selectFetchingFeaturedUris(state),
+  tags: selectFollowedTags(state),
 });
 
 const perform = dispatch => ({

@@ -119,6 +119,7 @@
 .card__list {
   display: grid;
   grid-gap: var(--spacing-vertical-medium);
+  margin: var(--spacing-vertical-large) 0;
 
   // Depending on screen width, the amount of items in
   // each row change and are auto-sized
@@ -198,8 +199,7 @@
 
 .card__subtitle {
   @extend .help;
-  background-color: lighten($lbry-gray-1, 7%);
-  color: darken($lbry-gray-5, 30%);
+  color: darken($lbry-gray-5, 25%);
   font-size: 1.15rem;
   margin-bottom: var(--spacing-vertical-small);
 

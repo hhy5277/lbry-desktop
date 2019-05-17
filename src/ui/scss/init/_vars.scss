@@ -23,8 +23,10 @@ $large-breakpoint: 1921px;
   --file-max-width: 1400px;
 
   --video-aspect-ratio: 56.25%; // 9 x 16
-
   --channel-thumbnail-size: 10rem;
+
+  // Color
+  --color-focus: var(--lbry-blue-1);
 
   // Text
   --text-max-width: 660px;
