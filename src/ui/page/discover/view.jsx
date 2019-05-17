@@ -69,7 +69,7 @@ function DiscoverPage(props) {
   return (
     <Page>
       {/* <FirstRun /> */}
-      <h1 className="media__title media__title--large">{__('Trending')}</h1>
+      <h1 className="media__title media__title--large">{__('Trending For You')}</h1>
       <ul className="card__list">
         {new Array(10).fill(1).map((x, i) => (
           <FileCard placeholder key={i} />
