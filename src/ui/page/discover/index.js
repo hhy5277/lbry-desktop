@@ -12,7 +12,7 @@ import DiscoverPage from './view';
 const select = state => ({
   featuredUris: selectFeaturedUris(state),
   fetchingFeaturedUris: selectFetchingFeaturedUris(state),
-  tags: selectFollowedTags(state),
+  followedTags: selectFollowedTags(state),
 });
 
 const perform = dispatch => ({

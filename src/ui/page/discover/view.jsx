@@ -62,7 +62,7 @@ class DiscoverPage extends React.PureComponent<Props> {
   }
 
   render() {
-    const { featuredUris, fetchingFeaturedUris } = this.props;
+    const { featuredUris, fetchingFeaturedUris, followedTags } = this.props;
     const hasContent = typeof featuredUris === 'object' && Object.keys(featuredUris).length;
     const failedToLoad = !fetchingFeaturedUris && !hasContent;
 
@@ -89,6 +89,13 @@ class DiscoverPage extends React.PureComponent<Props> {
             <Discovery />
           </div>
         </div>
+
+        <h1 className="media__title media__title--large">{followedTags[0] && followedTags[0].name}</h1>
+        <ul className="card__list">
+          {new Array(10).fill(1).map((x, i) => (
+            <FileCard placeholder key={i} />
+          ))}
+        </ul>
 
         {/* {hasContent &&
           Object.keys(featuredUris).map(category => (
